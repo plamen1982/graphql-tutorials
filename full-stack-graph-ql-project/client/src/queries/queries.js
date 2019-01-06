@@ -17,14 +17,15 @@ const getBooksQuery = gql`
     }
   }
 `;
-
+//$name, $genre and $authorId are comming where addBookMutation is called and what is inside the variables object
 const addBookMutation = gql`
-    mutation {
-        addBook(name: "", genre: "", authorId: "") {
+    mutation($name: String!, $genre: String!, $authorId: ID!) {
+        addBook(name: $name, genre: $genre, authorId: $authorId) { 
             name
             id
         }
     }
 `;
+//String! - or ! means non empty in this case String
 
 export { getAuthorsQuery, getBooksQuery, addBookMutation };
