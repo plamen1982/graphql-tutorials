@@ -4,12 +4,35 @@ import { getBookQuery } from '../queries/queries';
 
 class BookDetails extends Component {
 
+    renderBookDetails() {
+        const { data: { book } } = this.props;
+
+        if(book) {
+        const { data: { book: { author: { books } } } } = this.props;
+            return (
+                <div>
+                    <h2>{book.name}</h2>
+                    <p>{book.genre}</p>
+                    <p>{book.author.name}</p>
+                    <p>All books by this author:</p>
+                    <ul className="other-books">
+                        {books.map(book => <li key={book.id}>{book.name}</li>)}
+                    </ul>
+                </div>
+            )
+        } else {
+            return (
+                <div>No book selected...</div>
+            )
+        }
+    }
+
   render() {
-    console.log(this.props);
+
 
     return (
         <div id="book-details">
-            <p>Output book details here</p>
+            {this.renderBookDetails()}
         </div>
     );
   }
