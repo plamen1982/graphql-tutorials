@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { graphql, compose } from "react-apollo"; // graphql is the tool that helping us to bind the data from the query with the component
-import { getAuthorsQuery, addBookMutation } from "../queries/queries";
+import { getAuthorsQuery, addBookMutation, getBooksQuery } from "../queries/queries";
 
 class AddBook extends Component {
   constructor(props) {
@@ -38,7 +38,10 @@ class AddBook extends Component {
             name: this.state.name,
             genre: this.state.genre,
             authorId: this.state.authorId,
-        }
+        },
+        refetchQueries: [{
+            query: getBooksQuery
+        }]
     });
   };
 

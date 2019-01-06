@@ -19,7 +19,7 @@ const getBooksQuery = gql`
 `;
 //$name, $genre and $authorId are comming where addBookMutation is called and what is inside the variables object
 const addBookMutation = gql`
-    mutation($name: String!, $genre: String!, $authorId: ID!) {
+    mutation AddBook($name: String!, $genre: String!, $authorId: ID!) {
         addBook(name: $name, genre: $genre, authorId: $authorId) { 
             name
             id
