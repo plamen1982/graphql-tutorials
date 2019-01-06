@@ -6,6 +6,13 @@ import { getBooksQuery } from '../queries/queries';
 import BookDetails from './BookDetails';
 
 class BookList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selected: null,
+        }
+    }
+
     renderBooks() {
         const { data: { books } } = this.props;
         const { data: { loading } } = this.props;
@@ -14,7 +21,7 @@ class BookList extends Component {
         }
 
         return books.map((book) => {
-            return (<li key={book.id}>{book.name}</li>)
+            return (<li key={book.id} onClick={(e) => { this.setState({selected: book.id}) }}>{book.name}</li>)
         })
     }
   render() {
@@ -23,7 +30,7 @@ class BookList extends Component {
             <ul id="book-list">
                 {this.renderBooks()}
             </ul>
-            <BookDetails />
+            <BookDetails bookId={ this.state.selected }/>
         </div>
     );
   }
