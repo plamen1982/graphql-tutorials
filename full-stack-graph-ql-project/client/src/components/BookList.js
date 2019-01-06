@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo'; // graphql is the tool that helping us to bind the data from the query with the component
 import { getBooksQuery } from '../queries/queries';
 
+//components
+import BookDetails from './BookDetails';
+
 class BookList extends Component {
     renderBooks() {
         const { data: { books } } = this.props;
@@ -20,6 +23,7 @@ class BookList extends Component {
             <ul id="book-list">
                 {this.renderBooks()}
             </ul>
+            <BookDetails />
         </div>
     );
   }
