@@ -5,7 +5,7 @@ import { getBookQuery } from '../queries/queries';
 class BookDetails extends Component {
 
   render() {
-      const { bookId } = this.props;
+    console.log(this.props);
 
     return (
         <div id="book-details">
@@ -15,7 +15,15 @@ class BookDetails extends Component {
   }
 }
 
-export default graphql(getBookQuery)(BookDetails); //when component renders the data is requested with the query and the binding with the 
+export default graphql(getBookQuery, {
+    options: (props) => { 
+        return {
+            variables: {
+                id: props.bookId
+            }
+        }
+     }
+})(BookDetails); //when component renders the data is requested with the query and the binding with the 
                                                 //component and the information from the query is stored in the this.props
 
 //1. constructing the query - getBookQuery
